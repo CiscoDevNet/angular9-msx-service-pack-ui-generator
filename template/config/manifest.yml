@@ -1,0 +1,40 @@
+#
+# Copyright (c) 2021 Cisco Systems, Inc and its affiliates
+# All rights reserved
+#
+---
+Name: "@@servicepack_name@@"
+Description: "@@servicepack_description@@"
+Version: "1.0.0"
+Type: Internal
+Containers:
+  - Name: "@@servicepack_name@@"
+    Version: "1.0.0"
+    Artifact: "slmimage-@@servicepack_name@@-1.0.0.tar.gz"
+    Port: 4200
+    ContextPath: "/@@servicepack_name@@ui"
+    Tags:
+      - "productUI"
+      - "buildNumber=1.0.0"
+      - "instanceUuid=@@servicepack_uuid@@"
+      - "buildDateTime=@@servicepack_builddate@@"
+      - "name=@@servicepack_name@@"
+      - "version=1.0.0"
+    Check:
+      Http:
+        Host: "127.0.0.1"
+        Scheme: "http"
+        Path: "/@@servicepack_name@@ui/@@servicepack_name@@.css"
+      IntervalSec: 60
+      InitialDelaySec: 30
+      TimeoutSec: 30
+    Limits:
+      Memory: "256Mi"
+      CPU: "1"
+    Command:
+      - "/docker-entrypoint.sh"
+      - "nginx"
+      - "-g"
+      - "daemon off;"
+    Endpoints:
+      - "/@@servicepack_name@@ui"

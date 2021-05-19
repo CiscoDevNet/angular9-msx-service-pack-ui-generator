@@ -1,0 +1,16 @@
+<div class="sk-font-panel-header subscription-form-header" msxResourceString="@@servicepack_name@@.add.support.title"></div>
+<div class="sk-font-standard-text subscription-form-text" msxResourceString="@@servicepack_name@@.add.support.description"></div>
+<msx-check-box
+    class="subscription-form-checkbox subscription-form-checkbox-accept-terms"
+    label="@@servicepack_name@@.accept.agreement.label"
+    [msxModel]="acceptTerms"
+    (msxChange)="_onChange($event, 'acceptTerms')"
+></msx-check-box>
+<div class="sk-font-panel-header subscription-form-header" msxResourceString="@@servicepack_name@@.accept.terms.title"></div>
+<div class="sk-font-standard-text subscription-form-text" msxResourceString="@@servicepack_name@@.accept.terms.description"></div>
+<msx-check-box
+    class="subscription-form-checkbox subscription-form-checkbox-accept-support"
+    label="@@servicepack_name@@.accept.agreement.label"
+    [msxModel]="acceptSupport"
+    (msxChange)="_onChange($event, 'acceptSupport')"
+></msx-check-box>

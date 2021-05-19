@@ -1,0 +1,15 @@
+{
+	"uuid": "@@priceplan_uuid@@",
+	"name": "12 Month",
+	"serviceId": "@@service_uuid@@",
+	"offerId": "@@offer_uuid@@",
+	"version": 1,
+	"currentVersion": true,
+	"startDate": null,
+	"endDate": null,
+	"currency": "USD",
+	"oneTimePrice": 0,
+	"periodicPrice": 100,
+	"timePeriod": "monthly",
+	"pricePlanAttributes": []
+}

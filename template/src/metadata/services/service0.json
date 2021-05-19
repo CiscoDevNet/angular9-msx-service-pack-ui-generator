@@ -1,0 +1,56 @@
+{
+	"id": "@@service_uuid@@",
+	"name": "@@servicepack_name@@",
+	"label": "@@servicepack_name@@.service.property.name",
+	"active": true,
+	"version": 1,
+	"displayOrder": 1,
+	"description": "@@servicepack_name@@.service.property.description",
+	"image": "@@inline-image@@",
+	"orderLimit": 1,
+	"orchestrator": "none",
+	"skipUsecaseValidation": true,
+	"configuration": {
+		"device": "false",
+		"showOffers": "true",
+		"validation": "none",
+		"orchestrator": "none"
+	},
+	"options": [{
+		"name": "@@servicepack_name@@_option1",
+		"label": "@@servicepack_name@@.service.option1.label",
+		"header": null,
+		"description": "@@servicepack_name@@.service.option1.description",
+		"hint": "@@servicepack_name@@.service.option1.hint",
+		"supported": true
+	}],
+	"properties": [],
+	"sections": [{}],
+	"slmUiConfig": {
+		"type": "ng2-lazyload",
+		"resources": [{
+			"type": "ui-info",
+			"href": "/@@servicepack_name@@ui/ui-info.js"
+		},{
+			"type": "css",
+			"href": "/@@servicepack_name@@ui/@@servicepack_name@@.css"
+		},{
+			"type": "routes",
+			"href": "/@@servicepack_name@@ui/routes.js"
+		},{
+			"type": "i18n",
+			"href": "/@@servicepack_name@@ui/i18n/i18n.json"
+		},{
+			"type": "tcui-hooks",
+			"href": "/@@servicepack_name@@ui/tcui-hooks.js"
+		},{
+			"type": "app-main",
+			"href": "/@@servicepack_name@@ui/app.js"
+		},{
+			"type": "online-help",
+			"href": "/@@servicepack_name@@ui/help/help.json"
+		}]
+	},
+	"parentId": null,
+	"resource": false
+}

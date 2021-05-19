@@ -1,1 +1,46 @@
-# angular9-msx-service-pack-ui-generator
+# Angular 9 Tenant Centric Service Pack Sample
+This is an example Tenant Centric UI.  It includes everything needed to build a running UI and deploy metadata to MSX through the Component Management function of the MSX Product so that it appears as a purchaseable service.  This example is based on Angular 9.  It does expect that you have basic HTML, CSS, and JavaScript knowledge, as well as understanding of Angular 9.
+
+## Development Environment
+
+The preferred development environment is either macOS or Linux.  These provide all the general shell commands and scripting support to make startup and development simpler.  Other environments will work, but they are not covered in this document.
+
+## Dependencies
+
+The MSX UI has a few dependencies that must be installed before you can start or develop code for the UI.
+
+
+### macOS
+
+To develop on macOS, it is highly recommended that you have Homebrew installed.
+Homebrew allows easy install of many common unix utilities on macOS that make
+development easier.  It is also recommended that you have the command line tools
+for Xcode installed.
+
+1. [Homebrew](https://brew.sh/) - A utility for installing all sorts of
+   UNIX/Linux utilities on macOS. It is highly recommended that you install
+   this, as all the other dependencies can be installed through Homebrew.
+
+
+### Linux
+
+Nothing special is required to be installed on Linux specifically.
+
+
+### Common
+
+1. [NPM](https://www.npmjs.com/) - The Node Package Manager.  Node.js is used to execute the build system, manage dependencies.  This comes automatically with Node.js, can be downloaded from the web and installed, or installed through your preferred Linux package manager when on Linux.
+2. [Node.js](https://nodejs.org/en/) - A commandline JavaScript runtime.  It is used for running the builds and local webserver.  This can be installed through Homebrew (`brew install node@10`), downloaded from the web and installed, or installed through your preferred Linux package manager when on Linux.  Any version equal to or greater than 8, but less than 14 should be okay.  node-sass does not work with node 15.
+4. [Webpack](https://webpack.js.org/) - Webpack is used for generating the final set of files for the service and the metadata to deploy.  It also handles processing Javascript to be compatible across browsers with Babel, as well as allowing usage of type script.  This can be installed through NPM (`npm install -g webpack webpack-cli`), downloaded from the web and installed, or installed through your preferred Linux package manager when on Linux
+5. [Docker](https://www.docker.com/) - You need docker for generating the SLM installable container.
+6.  Curl - A useful utility for making web requests from the command line.  Used for debugging microservice calls.
+
+## The Top Level Build Project
+This level contains the basic build files used to construct a TC-UI build tree.  What it does is produce a UI build tree from a set of templated files to make it easy to quickly stub out an MSX UI installable UI build tree for development in.  The template generator consists of a Webpack configuration file that is designed copy and insert the configuration information you provide to create the new sub product UI for MSX.  
+
+## Generating the new UI Project
+Building the new UI project is simple.  You just execute a shell script and pass it a few arguments.   Example:
+
+./createTemplate.sh -project-name=\"fakecoSomeNewService\" -project-description=\"My Awesome UI for SomeNewService\" -image-file=\"some/path/image.png\" -output-dir=\"~/SomeNewDirectory\""
+
+This will execute the project creator and generate a new UI build tree in the provided output directory.

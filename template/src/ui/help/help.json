@@ -1,0 +1,13 @@
+[{
+	"key": "msx/@@servicepack_name@@/",
+	"url": {
+		"root": "https://www.cisco.com",
+		"en": "https://www.cisco.com"
+	}
+},{
+	"key": "msx/platform/tenant/workspace/@@servicepack_name@@/help",
+	"url": {
+		"root": "https://www.cisco.com",
+		"en": "https://www.cisco.com"
+	}
+}]

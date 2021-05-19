@@ -1,0 +1,14 @@
+.@@servicepack_name@@-service-details {
+	.@@servicepack_name@@-custom-metric {
+		.help-examples {
+			display: flex;
+			align-items: center;
+			justify-content: center;			
+			.msx-help-button,
+			.msx-help-link,
+			.msx-help-icon {
+				margin: 0.5rem;
+			}
+		}
+	}
+}
