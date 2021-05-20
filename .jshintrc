@@ -1,0 +1,16 @@
+{
+    "undef": true,
+    "unused": true,
+    "esversion": 6,
+    "curly": true,
+    "trailingcomma": false,
+    "eqnull": true,
+    "browser": true,
+    "sub": true,
+    "globals": {
+        "window": true,
+        "require": true,
+        "define": true,
+        "console": true
+    }
+}

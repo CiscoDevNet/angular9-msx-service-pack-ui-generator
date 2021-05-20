@@ -8,6 +8,7 @@
 	"description": "@@servicepack_name@@.service.property.description",
 	"image": "@@inline-image@@",
 	"orderLimit": 1,
+	"price": "0",
 	"orchestrator": "none",
 	"skipUsecaseValidation": true,
 	"configuration": {

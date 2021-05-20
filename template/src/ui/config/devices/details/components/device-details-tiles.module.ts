@@ -14,10 +14,10 @@ import { @@base_component_name@@DeviceDetailsTile2 } from "./device-details-tile
 import { @@base_component_name@@DeviceDetailsTile3 } from "./device-details-tile3.component";
 import { @@base_component_name@@DeviceDetailsSideTile1 } from "./device-details-side-tile1.component";
 import { @@base_component_name@@DeviceDetailsSideTile2 } from "./device-details-side-tile2.component";
+import { @@base_component_name@@DeviceDetailsSideTile3 } from "./device-details-side-tile3.component";
 import { MsxFormsModule } from '@msx/forms';
 import { SitesModule } from '@msx/sites';
 import { DevicesModule } from '@msx/devices';
- @@base_component_name@@DeviceDetailsSideTile3 } from "./device-details-side-tile3.component";
 
 const DIRECTIVES: Provider[] = [
 	@@base_component_name@@DeviceDetailsTile0,
