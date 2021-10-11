@@ -2,7 +2,6 @@ import { NgModule, Provider, DoBootstrap} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MsxCommonModule, AngularJSProvider} from '@msx/common';
 import { MsxFormsModule} from '@msx/forms';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { @@base_component_name@@PreSubscriptionForm } from './pre/pre-subscription-form.component';
 
@@ -11,7 +10,6 @@ const DIRECTIVES: Provider[] = [
 ];
 @NgModule({
 	imports: [
-		BrowserModule,
 		CommonModule,
 		MsxCommonModule,
 		MsxFormsModule

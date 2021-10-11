@@ -4,7 +4,6 @@ import { MsxCommonModule, AngularJSProvider} from '@msx/common';
 import { MsxFormsModule } from '@msx/forms';
 import { DevicesModule } from '@msx/devices';
 import { SitesModule } from '@msx/sites';
-import { BrowserModule } from '@angular/platform-browser';
 import { @@base_component_name@@ServiceDetails } from './components/tiles/service-details-tile/service-details-tile.component';
 import { @@base_component_name@@ServiceSubtitleComponent } from './components/tiles/service-subtitle-tile/service-subtitle-tile.component';
 import { @@base_component_name@@ServiceSummaryComponent } from './components/tiles/service-summary-tile/service-summary-tile.component';
@@ -16,7 +15,6 @@ const DIRECTIVES: Provider[] = [
 ];
 @NgModule({
 	imports: [
-		BrowserModule,
 		CommonModule,
 		MsxCommonModule,
 		MsxFormsModule,

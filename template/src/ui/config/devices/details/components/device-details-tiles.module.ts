@@ -7,7 +7,6 @@
 import { NgModule, Provider, DoBootstrap} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MsxCommonModule} from '@msx/common';
-import { BrowserModule } from '@angular/platform-browser';
 import { @@base_component_name@@DeviceDetailsTile0 } from "./device-details-tile0.component";
 import { @@base_component_name@@DeviceDetailsTile1 } from "./device-details-tile1.component";
 import { @@base_component_name@@DeviceDetailsTile2 } from "./device-details-tile2.component";
@@ -30,7 +29,6 @@ const DIRECTIVES: Provider[] = [
 ];
 @NgModule({
 	imports: [
-		BrowserModule,
 		CommonModule,
 		MsxCommonModule,
 		MsxFormsModule,

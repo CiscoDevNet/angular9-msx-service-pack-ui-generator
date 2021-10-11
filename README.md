@@ -39,8 +39,21 @@ Nothing special is required to be installed on Linux specifically.
 This level contains the basic build files used to construct a TC-UI build tree.  What it does is produce a UI build tree from a set of templated files to make it easy to quickly stub out an MSX UI installable UI build tree for development in.  The template generator consists of a Webpack configuration file that is designed copy and insert the configuration information you provide to create the new sub product UI for MSX.  
 
 ## Generating the new UI Project
-Building the new UI project is simple.  You just execute a shell script and pass it a few arguments.   Example:
+Building the new UI project is simple. You just execute a shell script and pass it a few arguments.
 
-./createTemplate.sh -project-name=\"fakecoSomeNewService\" -project-description=\"My Awesome UI for SomeNewService\" -image-file=\"some/path/image.png\" -output-dir=\"~/SomeNewDirectory\""
+> **Gotcha**
+>
+> The arguments `-image-file` and `-output-dir` must be absolute paths.
+
+Here is an example of calling the script as user `johndoe`.
+
+```shell
+./createTemplate.sh -project-name="fakecoSomeNewService" \
+-project-description="My Awesome UI for SomeNewService" \
+-image-file="/Users/johndoe/Images/image.png" \
+-output-dir="/Users/johndoe/Projects/SomeNewDirectory"
+```
+
+
 
 This will execute the project creator and generate a new UI build tree in the provided output directory.
