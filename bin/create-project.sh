@@ -47,12 +47,17 @@ if [ "${OUTPUT_DIR}x" = "x" ] ; then
 	OUTPUT_DIR="$HOME/templated-service-$PROJECT_UUID"
 fi
 
+SCRIPT_LOC=`dirname $0`
+
 # Handle case of ~/ as part of the input
 CUR_DIR=`pwd`
 cd ~/
 _HOME=`pwd`
-OUTPUT_DIR=`echo $OUTPUT_DIR | sed -e "s|\~\/|$_HOME\/|g"`
+OUTPUT_DIR=`echo $OUTPUT_DIR | sed -e "s|\~\/|$_HOME\/|"`
+# Handle ./ as well.
+OUTPUT_DIR=`echo $OUTPUT_DIR | sed -e "s|^"\.\/"|$CUR_DIR\/|"`
 cd $CUR_DIR
+
 
 if [ ! -d $OUTPUT_DIR ] ; then 
 	mkdir -p "$OUTPUT_DIR"
@@ -63,7 +68,11 @@ OUTPUT_DIR=`pwd`
 cd "$CUR_DIR"
 
 if [ "${IMAGE}x" = "x" ] ; then 
-	IMAGE="$CUR_DIR/sample-image/sample.svg"
+	IMAGE="$SCRIPT_LOC/sample-image/sample.svg"
+else
+	IMAGE=`echo $IMAGE | sed -e "s|\~\/|$_HOME\/|"`
+	# Handle ./ as well.
+	IMAGE=`echo $IMAGE | sed -e "s|^"\.\/"|$CUR_DIR\/|"`	
 fi
 
 if [ -d "$OUTPUT_DIR" ] ; then

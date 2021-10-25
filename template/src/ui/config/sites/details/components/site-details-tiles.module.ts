@@ -10,7 +10,6 @@ import { MsxCommonModule} from '@msx/common';
 import { MsxFormsModule } from '@msx/forms';
 import { DevicesModule } from '@msx/devices';
 import { SitesModule } from '@msx/sites';
-import { BrowserModule } from '@angular/platform-browser';
 import { @@base_component_name@@ServiceSiteDetailsComponent } from "./service-site-details.component";
 
 const DIRECTIVES: Provider[] = [
@@ -18,7 +17,6 @@ const DIRECTIVES: Provider[] = [
 ];
 @NgModule({
 	imports: [
-		BrowserModule,
 		CommonModule,
 		MsxCommonModule,
 		MsxFormsModule,
