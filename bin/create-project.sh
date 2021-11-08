@@ -68,7 +68,7 @@ OUTPUT_DIR=`pwd`
 cd "$CUR_DIR"
 
 if [ "${IMAGE}x" = "x" ] ; then 
-	IMAGE="$SCRIPT_LOC/sample-image/sample.svg"
+	IMAGE="$SCRIPT_LOC/../sample-image/sample.svg"
 else
 	IMAGE=`echo $IMAGE | sed -e "s|\~\/|$_HOME\/|"`
 	# Handle ./ as well.
