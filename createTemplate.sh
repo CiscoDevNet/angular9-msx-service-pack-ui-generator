@@ -30,5 +30,43 @@ if [ $# -eq 0 ] ; then
 fi
 
 cd "$SCRIPT_LOC"
-npm run create-project -- $@
+
+# Process all the inputs as they need to be escaped/quoted before passing through.
+PROJECT_NAME=""
+PROJECT_DESCRIPTION=""
+PROJECT_UUID=""
+OUTPUT_DIR=""
+IMAGE=""
+for PARAM in "$@"
+do
+	if [ "${PROJECT_NAME}x" = "x" ] ; then
+		PROJECT_NAME=`echo $PARAM | grep '\-project-name=' | sed -e 's|\-project-name=||g'`
+	fi
+	if [ "${PROJECT_DESCRIPTION}x" = "x" ] ; then
+		PROJECT_DESCRIPTION=`echo $PARAM | grep '\-project-description=' | sed -e 's|\-project-description=||g'`
+	fi
+	if [ "${PROJECT_UUID}x" = "x" ] ; then
+		PROJECT_UUID=`echo $PARAM | grep '\-project-uuid=' | sed -e 's|\-project-uuid=||g'`
+	fi
+	if [ "${OUTPUT_DIR}x" = "x" ] ; then
+		OUTPUT_DIR=`echo $PARAM | grep '\-output-dir=' | sed -e 's|\-output-dir=||g'`
+	fi
+	if [ "${IMAGE}x" = "x" ] ; then
+		IMAGE=`echo $PARAM | grep '\-image-file=' | sed -e 's|\-image-file=||g'`
+	fi
+done
+
+if [ "${PROJECT_UUID}x" = "x" ] ; then
+	PROJECT_UUID=`uuidgen | tr '[:upper:]' '[:lower:]'`
+fi
+
+if [ "${PROJECT_DESCRIPTION}x" = "x" ] ; then
+	PROJECT_DESCRIPTION="Templated Service Pack"
+fi
+
+if [ "${OUTPUT_DIR}x" = "x" ] ; then
+	OUTPUT_DIR="$HOME/templated-service-$PROJECT_UUID"
+fi
+
+npm run create-project -- "-project-name=$PROJECT_NAME" "-project-description=$PROJECT_DESCRIPTION" "-project-uuid=$PROJECT_UUID" "-image-file=$IMAGE" "-output-dir=$OUTPUT_DIR"
 cd $CUR_DIR
