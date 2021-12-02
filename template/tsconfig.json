@@ -20,5 +20,6 @@
 		],
 		"paths": {
 			"@@servicepack_name@@/*": ["src/ui*"]
-		}
+		},
+		"types": [ "@cisco-msx/types" ]
 	}}
