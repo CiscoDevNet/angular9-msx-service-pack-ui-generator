@@ -29,7 +29,8 @@ Nothing special is required to be installed on Linux specifically.
 
 ### Common
 
-1. [NPM](https://www.npmjs.com/) - The Node Package Manager.  Node.js is used to execute the build system, manage dependencies.  This comes automatically with Node.js, can be downloaded from the web and installed, or installed through your preferred Linux package manager when on Linux.
+1. [NPM](https://www.npmjs.com/) - The Node Package Manager.  Node.js is used to execute the build system, manage dependencies.  This comes automatically with Node.js, can be downloaded from the web and installed, or installed through your preferred Linux package manager when on Linux.   Any version equal to or greater than 8 , but less than 15, should work fine. 15 has issues with the version of webpack we are running currently.
+
 2. [Node.js](https://nodejs.org/en/) - A commandline JavaScript runtime.  It is used for running the builds and local webserver.  This can be installed through Homebrew (`brew install node@10`), downloaded from the web and installed, or installed through your preferred Linux package manager when on Linux.  Any version equal to or greater than 8, but less than 14 should be okay.  node-sass does not work with node 15.
 4. [Webpack](https://webpack.js.org/) - Webpack is used for generating the final set of files for the service and the metadata to deploy.  It also handles processing Javascript to be compatible across browsers with Babel, as well as allowing usage of type script.  This can be installed through NPM (`npm install -g webpack webpack-cli`), downloaded from the web and installed, or installed through your preferred Linux package manager when on Linux
 5. [Docker](https://www.docker.com/) - You need docker for generating the SLM installable container.
