@@ -1,7 +1,7 @@
 import { NgModule, Provider, DoBootstrap} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MsxCommonModule, AngularJSProvider} from '@msx/common';
-import { MsxFormsModule} from '@msx/forms';
+import { MsxCommonModule, AngularJSProvider} from '@cisco-msx/common';
+import { MsxFormsModule} from '@cisco-msx/forms';
 
 import { @@base_component_name@@PreSubscriptionForm } from './pre/pre-subscription-form.component';
 

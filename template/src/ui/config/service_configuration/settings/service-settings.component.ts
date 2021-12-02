@@ -2,7 +2,7 @@
 //
 // This is an example service stettings tile for settings/Service Configuration/YourService implementation
 import { Component, Input, OnInit } from '@angular/core';
-import { MsxCommonModule } from '@msx/common';
+import { MsxCommonModule } from '@cisco-msx/common';
 import template from './service-settings.component.html';
 
 @Component({

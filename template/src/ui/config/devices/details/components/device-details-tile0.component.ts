@@ -2,7 +2,7 @@
 //
 // This is an example device details tile implementation
 import { Component, Input, OnInit, Inject } from '@angular/core';
-import { AngularJSProvider } from '@msx/common';
+import { AngularJSProvider } from '@cisco-msx/common';
 
 const template = "<div class='' *ngIf='!deviceSerialAvailable'>" +
 	"<span class='{{statusDot}}'></span>" +

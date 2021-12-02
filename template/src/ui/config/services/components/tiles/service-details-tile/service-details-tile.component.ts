@@ -1,6 +1,6 @@
 import { Component, Inject, Input, OnInit} from '@angular/core';
 import { @@base_component_name@@SubscripionManager } from '../../../../../manager/subscription-manager';
-import { AngularJSProvider } from '@msx/common';
+import { AngularJSProvider } from '@cisco-msx/common';
 import template from './service-details-tile.component.html';
 import './service-details-tile.component.scss';
 
