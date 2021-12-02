@@ -1,5 +1,5 @@
 import { Component, Inject, Input, SimpleChanges } from '@angular/core';
-import { AngularJSProvider } from '@msx/common';
+import { AngularJSProvider } from '@cisco-msx/common';
 import template from './service-subtitle-tile.component.html';
 
 @Component({

@@ -1,4 +1,4 @@
-import webpackExternals from '@msx/webpack-externals';
+import webpackExternals from '@cisco-msx/webpack-externals';
 import { resolve as resolvePath } from "path";
 import replace from "@rollup/plugin-replace";
 import externalGlobals from "rollup-plugin-external-globals";

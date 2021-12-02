@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MsxCommonModule } from "@msx/common";
+import { MsxCommonModule } from "@cisco-msx/common";
 import { RoutedPageComponent } from './routed-page.component';
 import { UIRouterModule } from '@uirouter/angular';
 
