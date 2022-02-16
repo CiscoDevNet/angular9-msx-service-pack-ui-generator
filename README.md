@@ -57,3 +57,27 @@ Here is an example of calling the script as user `johndoe`.
 
 
 This will execute the project creator and generate a new UI build tree in the provided output directory.
+
+
+# Details
+
+Generator is webpack based. Files from `template` folder are copied into new folder using
+`webpack` and its configuration file `webpack.config.js`.
+Parameters passed in command line are used for placeholder replacement in the template files.  
+Resulting folder contains MSX deployable Service Pack with the name passed in `project-name` parameter. Service Pack names must be unique within one MSX installation.
+
+Deployment result is new Service is visible in MSX Service Catalog.
+
+Taking example above 
+```shell
+./createTemplate.sh -project-name="fakecoSomeNewService" \
+-project-description="My Awesome UI for SomeNewService" \
+-image-file="/Users/johndoe/Images/image.png" \
+-output-dir="/Users/johndoe/Projects/SomeNewDirectory"
+```
+this will generate code for new Service Pack called `fakecoSomeNewService`.
+
+Once code is compiled, packaged and deployed MSX Service Catalog will show new Service 
+`My Awesome UI for SomeNewService`.
+
+See *README.md* file in the generated code folder for further details on using and customizing the Service Pack UI.
