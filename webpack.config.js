@@ -59,6 +59,25 @@ const config = {
 	},
 
 	plugins: [
+		// Copy all .md files from template to output performing replacements.
+		buildUtils.generateCopyPlugin({
+			// To is relative to output dir
+			to: normalizeString(PROJECT_NAME),
+			context: "template/",
+			from: "**/*.md"
+		},[
+			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
+			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
+			{search: "@@servicepack_description@@", replace: PROJECT_DESCRIPTION, flags: "g"},
+			{search: "@@servicepack_uuid@@", replace: PROJECT_UUID, flags: "g"},
+			{search: "@@service_uuid@@", replace: SERVICE_UUID, flags: "g"},
+			{search: "@@offer_uuid@@", replace: OFFER_UUID, flags: "g"},
+			{search: "@@terms_uuid@@", replace: TERMS_UUID, flags: "g"},
+			{search: "@@priceplan_uuid@@", replace: PRICEPLAN_UUID, flags: "g"},
+			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
+			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
+		]),
+		// Copy all .yml files from template to output performing replacements.
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
@@ -76,8 +95,7 @@ const config = {
 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
 		]),
-		// Process the metadata files and copy in the uuids defined in our
-		// uuids.js
+		// Copy all .html files from template to output performing replacements.
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
@@ -95,7 +113,7 @@ const config = {
 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
 		]),
-		// JSON files
+		// Copy all .js files from template to output performing replacements.
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
@@ -113,7 +131,7 @@ const config = {
 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
 		]),
-		// Copy over the deployer shell script to make easy deployment of metadata
+		// Copy all .ts files from template to output performing replacements.
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
@@ -131,6 +149,7 @@ const config = {
 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
 		]),
+		// Copy all .scss files from template to output performing replacements.
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
@@ -148,6 +167,7 @@ const config = {
 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
 		]),
+		// Copy .json files from template folder root to output performing replacements.
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
@@ -165,6 +185,7 @@ const config = {
 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
 		]),
+		// Copy .json files from template/src/ui/i18n folder root to output performing replacements.
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
@@ -182,6 +203,7 @@ const config = {
 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
 		]),
+		// Copy .json files from template/src/ui/help folder root to output performing replacements.
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
@@ -217,7 +239,7 @@ const config = {
 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
 		]),
-		// Copy over the deployer shell script to make easy deployment of metadata
+		// Copy over the Dockerfile
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
@@ -235,7 +257,7 @@ const config = {
 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
 		]),
-		// Copy over the deployer shell script to make easy deployment of metadata
+		// Copy all .conf files from template to output performing replacements.
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
@@ -253,13 +275,7 @@ const config = {
 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
 		]),
-		// Copy over the deployer shell script to make easy deployment of metadata
-		buildUtils.generateCopyPlugin({
-			// To is relative to output dir
-			to: normalizeString(PROJECT_NAME),
-			context: "template/",
-			from: "**/.npmrc"
-		}),
+		// Change mode on all .sh files to executable
 		new ChmodWebpackPlugin([
 			{path: OUTPUT_DIR + "/" + normalizeString(PROJECT_NAME) + "/bin/*.sh", mode: 755},
 			{path: OUTPUT_DIR + "/" + normalizeString(PROJECT_NAME) + "/src/metadata/*.sh", mode: 755}
@@ -273,6 +289,9 @@ const config = {
             	allowRootAndOutside: true
             }
         }),
+		// Combine files in src/metadata to build one medata data file
+		// This is our own webpack plugin
+		// output file name "catalogMetadata.json" is in the plugin.
         new buildUtils.GenerateServiceDataPayloadPlugin({
         	outputDir: path.resolve(OUTPUT_DIR, normalizeString(PROJECT_NAME), "src", "metadata"),
         	servicesDir: buildUtils.resolvePath("template", "src", "metadata", "services"),

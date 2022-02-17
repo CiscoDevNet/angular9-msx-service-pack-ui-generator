@@ -1,5 +1,7 @@
 import webpackExternals from '@cisco-msx/webpack-externals';
 import { resolve as resolvePath } from "path";
+// rollup uses a set of plugin to process files with different extentions.
+// references to them can be found in package.json
 import replace from "@rollup/plugin-replace";
 import externalGlobals from "rollup-plugin-external-globals";
 import html from "rollup-plugin-html";
@@ -10,6 +12,9 @@ import sourcemaps from "rollup-plugin-sourcemaps";
 import {terser} from "rollup-plugin-terser";
 import copy from "rollup-plugin-copy";
 
+// Variables for UI artifact build identification
+// Values will be places into ui-info.ts file that is read by MSX UI to show
+// artifact buils related information.
 const BUILD_NUMBER = process.env["BUILD_NUMBER"] || "";
 const BUILD_PATH = process.env["BUILD_PATH"] || "";
 const BUILD_DATE = new Date();
@@ -26,12 +31,14 @@ Object.entries(webpackExternals).forEach(([name, path]) => {
 });
 
 export default {
+	// initial starting points for building output JavaScript
 	input: {
-		routes: resolvePath("src", "ui", "routes.ts"),
+		"routes": resolvePath("src", "ui", "routes.ts"),
 		"tcui-hooks": resolvePath("src", "ui", "tcui-hooks.ts"),
 		"ui-info": resolvePath("src", "ui", "ui-info.ts"),
 	},
 	output: {
+		// output to build/services
 		sourcemap: true,
 		dir: BUILD_PATH ? resolvePath(BUILD_PATH) : resolvePath("build", "services"),
 		format: "es"

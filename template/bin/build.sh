@@ -42,7 +42,10 @@ fi
 TAR=`which tar`
 
 if [ -f "$TAR" ] ; then 
-	$TAR --exclude=./tcui_package.zip --exclude=./services -czf  @@servicepack_name@@_slm_deployable.tar.gz *
+	# TODO double check that this still works on MAC after removel of "./"
+	# --exclude=./tcui_package.zip does not work on UNIX
+	# had to change it to --exclude=tcui_package.zip
+	$TAR --exclude=tcui_package.zip --exclude=services -czf @@servicepack_name@@_slm_deployable.tar.gz *
 	rm -f slmimage-@@servicepack_name@@-1.0.0.tar.gz
 fi
 
