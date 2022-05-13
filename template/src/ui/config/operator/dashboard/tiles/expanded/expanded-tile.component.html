@@ -1,0 +1,50 @@
+<div class="@@servicepack_name@@-expanded-operator-tile">
+	<!-- This area is the lefthand area of the service, and usually displays basic information about that service.
+		The default implementation leverages the tile data that is passed in and renders a basic layout/structure/view
+		that follows the system default look. -->
+	<div class="@@servicepack_name@@-expanded-operator-tile-service-description sk-background-white tile-shadow tile-shadow-has-active-focus-states active">
+		><div class="msx-service-icon"
+			><msx-image-uploader
+				class="vms-display-only vms-thumbnail"
+				display-only
+				thumbnail
+				[msxImage]="tile.icon"
+				[msxModel]="_tenantIconModel"
+				[defaultIcon]="service"
+			></msx-image-uploader
+			><span class="msx-service-icon-badge" *ngIf="tile.status != null"
+				><img *ngIf="_badgeIcon != null && _badgeIcon !== ''" alt="" [src]="_badgeIcon"
+			></span
+		></div
+		><div class="msx-service-title sk-font-list-item-large" msxResourceString="{{tile.title}}"></div
+		><div class="msx-service-subtitle sk-font-standard-text" msxResourceString="{{tile.subtitle}}"></div
+		><div class="msx-service-summary sk-font-metadata-medium" *ngIf="tile.description"
+			><div
+				><span class="{{descriptionStyle}}" msxResourceString="{{ tile.description }}"></span
+				><span
+					*ngIf="showExpanded && !isExpanded"
+					class="msx-service-desc-text-view-more sk-font-standard-link"
+					role="link"
+					tabindex="0"
+					(click)="viewFullText()"
+					msxResourceString="{{viewMoreLabel}}"
+				></span
+				><span
+					*ngIf="showExpanded && isExpanded"
+					class="sk-font-standard-link"
+					role="link"
+					tabindex="0"
+					(click)="viewLessText()"
+					msxResourceString="{{viewLessLabel}}"
+				></span
+			></div
+		></div
+	></div>
+	<!-- This area is the righthand area of the service, and usually displays detailed information and other
+		stuff about that service.    You can define you custom tile content in here. -->
+	<div class="@@servicepack_name@@-expanded-operator-tile-service-details sk-background-white tile-shadow tile-shadow-has-active-focus-states active">
+		<!-- PUT YOUR DETAILED CONTENT HERE. -->
+		This is example content (Lorum Ipsum text): {{text}}
+		<!-- PUT YOUR DETAILED CONTENT HERE. -->
+	</div>
+</div>
