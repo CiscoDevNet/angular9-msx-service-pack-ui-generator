@@ -1,6 +1,6 @@
 {
 	"name": "@@servicepack_name@@",
-	"version": "4.2.0",
+	"version": "5.0.0",
 	"description": "Example Tenant Centric Service Pack",
 	"author": "Cisco Systems, Inc.",
 	"license": "SEE LICENSE IN LICENSE.md",
