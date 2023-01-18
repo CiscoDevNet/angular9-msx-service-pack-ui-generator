@@ -23,6 +23,9 @@ import { @@base_component_name@@ServiceNavigation } from "./config/navigation/se
 import { @@base_component_name@@ServiceConfigurationModule } from "./config/service_configuration/settings/settings.module";
 import { @@base_component_name@@ServiceSettings } from "./config/service_configuration/settings/service-settings.component";
 
+import { @@base_component_name@@OperatorExpandedTileModule } from "./config/operator/dashboard/tiles/expanded/expanded-tile.module";
+import { @@base_component_name@@OperatorExpandedTileComponent } from "./config/operator/dashboard/tiles/expanded/expanded-tile.component";
+
 export class @@base_component_name@@TCUIHooks {
 	httpService: any;
 	msxApiRouterBaseURL: string;
@@ -60,6 +63,30 @@ export class @@base_component_name@@TCUIHooks {
 		};
 	}
 
+	getOperatorDashboardConfig() {
+		return {
+			// The component that is displayed in the expanded view of a service tile in the operator dashboard.
+			// This is optional, and if not provided, then it will just use the builtin default of the platform UI.
+			// But, if this is provided, you can then do anything you want within that tile.
+			// ** Optional.
+			//
+			// The format of this object is just returning the module and component that should be rendered when the
+			// operator tile is expanded
+			// {
+			// 		module: @@base_component_name@@OperatorExpandedTileModule,
+			//		component: @@base_component_name@@OperatorExpandedTileComponent
+			// }
+			//
+			// Uncomment below if you need this
+			/*
+			operatorExpandedTileComponent: {
+				module: @@base_component_name@@OperatorExpandedTileModule,
+				component: @@base_component_name@@OperatorExpandedTileComponent
+			}
+			*/
+		};
+	}
+
 	// This hook point allows us to pass on some navigational information into the MSX-UI's navigation
 	// system for handling things like a 'service menu' that should go active when within a service's view
 	// if the service asks for it to be.  It also allows hooking other menu items into the main level menu, if desired.
@@ -68,7 +95,7 @@ export class @@base_component_name@@TCUIHooks {
 	//
 	getNavigationConfig() {
 		const ServiceMenuCtor = @@base_component_name@@ServiceNavigation;
-		const snInst = new ServiceMenuCtor();	
+		const snInst = new ServiceMenuCtor();
 		return {
 			getServiceMenu: function(){
 				return snInst.getServiceMenu();
@@ -268,11 +295,11 @@ export class @@base_component_name@@TCUIHooks {
 			],
 		};
 	}
-	
+
 	getServiceConfigurationConfig() {
 		// This set of options control what tiles appear for your service within
 		// settings/service configuration/<your service>.   The enable setting denotes
-		// if you should have the tile or not.   the 'settings' entry also supports 
+		// if you should have the tile or not.   the 'settings' entry also supports
 		// providing a component to display in a page.  This demonstrates how to do it,
 		// you just need to populate the content of the view, or disable it if you don't
 		// have one.
@@ -288,9 +315,9 @@ export class @@base_component_name@@TCUIHooks {
 				module: @@base_component_name@@ServiceConfigurationModule,
 				component: @@base_component_name@@ServiceSettings
 			}
-		};		
+		};
 	}
-	
+
 	getGlobalActionsConfig() {
 		// This set of options control what buttons appear the global menu add actions button.
 		// It not provided, the default is they're supported.  It's an opt-out sort of configuration
@@ -300,8 +327,8 @@ export class @@base_component_name@@TCUIHooks {
 				"device": true
 			}
 		};
-	}	
-	
+	}
+
 }
 
 export { @@base_component_name@@TCUIHooks as hooksClass };
