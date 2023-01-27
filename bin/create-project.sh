@@ -3,7 +3,7 @@
 # All rights reserved
 #
 #!/bin/bash
-
+webpack
 set -e
 
 NODE_OPTIONS=--max_old_space_size=8192
@@ -80,6 +80,8 @@ if [ -d "$OUTPUT_DIR" ] ; then
 	rm -rf "$OUTPUT_DIR"
 fi
 mkdir -p "$OUTPUT_DIR"
+echo " bhjjhkvhjkvbjhkvhj hjhgjjkhjkghkjgjkhhjhgjk $OUTPUT_DIR"
+echo " bhjjhkvhjkvbjhkvhj hjhgjjkhjkghkjgjkhhjhgjk $CUR_DIR"
 
 export PROJECT_NAME
 export PROJECT_DESCRIPTION
@@ -87,11 +89,15 @@ export PROJECT_UUID
 export OUTPUT_DIR
 export IMAGE
 
+
 PATH="$CUR_DIR/node_modules/.bin:$PATH"
 export PATH
 if [ -f "$CUR_DIR/package.json" ] ; then
+    echo "afndkajfnkjdjafnkdsa fjdkafjdsk;lf fkda;slfj dals $CUR_DIR/package.json"
 	npm install
+    
 fi
 webpack --display-error-details
+
 
 echo "Created base project at: [$OUTPUT_DIR]"

@@ -190,7 +190,7 @@ const config = {
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
 			context: "template/",
-			from: "src/ui/i18n/*.json"
+			from: "src/app/ui/i18n/*.json"
 		},[
 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
 			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
@@ -208,7 +208,7 @@ const config = {
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
 			context: "template/",
-			from: "src/ui/help/*.json"
+			from: "src/app/ui/help/*.json"
 		},[
 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
 			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
@@ -278,7 +278,7 @@ const config = {
 		// Change mode on all .sh files to executable
 		new ChmodWebpackPlugin([
 			{path: OUTPUT_DIR + "/" + normalizeString(PROJECT_NAME) + "/bin/*.sh", mode: 755},
-			{path: OUTPUT_DIR + "/" + normalizeString(PROJECT_NAME) + "/src/metadata/*.sh", mode: 755}
+			{path: OUTPUT_DIR + "/" + normalizeString(PROJECT_NAME) + "/src/app/metadata/*.sh", mode: 755}
 		]),
 		new RemovePlugin({
             after: {
@@ -293,11 +293,11 @@ const config = {
 		// This is our own webpack plugin
 		// output file name "catalogMetadata.json" is in the plugin.
         new buildUtils.GenerateServiceDataPayloadPlugin({
-        	outputDir: path.resolve(OUTPUT_DIR, normalizeString(PROJECT_NAME), "src", "metadata"),
-        	servicesDir: buildUtils.resolvePath("template", "src", "metadata", "services"),
-        	offersDir: buildUtils.resolvePath("template", "src", "metadata", "offers"),
-        	priceplansDir: buildUtils.resolvePath("template", "src", "metadata", "priceplans"),
-        	termsDir: buildUtils.resolvePath("template", "src", "metadata", "terms"),
+        	outputDir: path.resolve(OUTPUT_DIR, normalizeString(PROJECT_NAME), "src", "app", "metadata"),
+        	servicesDir: buildUtils.resolvePath("template", "src","app", "metadata", "services"),
+        	offersDir: buildUtils.resolvePath("template", "src", "app", "metadata", "offers"),
+        	priceplansDir: buildUtils.resolvePath("template", "src", "app", "metadata", "priceplans"),
+        	termsDir: buildUtils.resolvePath("template", "src", "app", "metadata", "terms"),
         	replacements:[
 				{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
 				{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},

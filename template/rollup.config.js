@@ -33,9 +33,9 @@ Object.entries(webpackExternals).forEach(([name, path]) => {
 export default {
 	// initial starting points for building output JavaScript
 	input: {
-		"routes": resolvePath("src", "ui", "routes.ts"),
-		"tcui-hooks": resolvePath("src", "ui", "tcui-hooks.ts"),
-		"ui-info": resolvePath("src", "ui", "ui-info.ts"),
+		"routes": resolvePath("src","app", "ui", "routes.ts"),
+		"tcui-hooks": resolvePath("src","app", "ui", "tcui-hooks.ts"),
+		"ui-info": resolvePath("src","app", "ui", "ui-info.ts"),
 	},
 	output: {
 		// output to build/services
