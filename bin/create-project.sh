@@ -80,8 +80,6 @@ if [ -d "$OUTPUT_DIR" ] ; then
 	rm -rf "$OUTPUT_DIR"
 fi
 mkdir -p "$OUTPUT_DIR"
-echo " bhjjhkvhjkvbjhkvhj hjhgjjkhjkghkjgjkhhjhgjk $OUTPUT_DIR"
-echo " bhjjhkvhjkvbjhkvhj hjhgjjkhjkghkjgjkhhjhgjk $CUR_DIR"
 
 export PROJECT_NAME
 export PROJECT_DESCRIPTION
@@ -93,7 +91,6 @@ export IMAGE
 PATH="$CUR_DIR/node_modules/.bin:$PATH"
 export PATH
 if [ -f "$CUR_DIR/package.json" ] ; then
-    echo "afndkajfnkjdjafnkdsa fjdkafjdsk;lf fkda;slfj dals $CUR_DIR/package.json"
 	npm install
     
 fi
