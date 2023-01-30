@@ -24,7 +24,7 @@ const DIRECTIVES: Provider[] = [
 	exports: [DIRECTIVES],
 	entryComponents: [DIRECTIVES]
 })
-export class @@base_component_name@@ExpandedTileModule implements DoBootstrap {
+export class @@base_component_name@@OperatorExpandedTileModule implements DoBootstrap {
 	/* eslint @typescript-eslint/no-empty-function: off */
 	ngDoBootstrap(): void {}
 }
