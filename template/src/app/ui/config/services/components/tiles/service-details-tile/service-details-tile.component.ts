@@ -1,25 +1,22 @@
-import { Component, Inject, Input, OnInit} from '@angular/core';
+import { Component, Inject, Input, OnInit, Injector, EventEmitter, Output} from '@angular/core';
 import { @@base_component_name@@SubscripionManager } from '../../../../../manager/subscription-manager';
-import { AngularJSProvider } from '@cisco-msx/common';
 import template from './service-details-tile.component.html';
 import './service-details-tile.component.scss';
 
 @Component({
 	selector: '@@servicepack_name@@-service-details',
 	host: {'class': '@@servicepack_name@@-service-details'},
-	providers: [
-		new AngularJSProvider('$state'),
-		new AngularJSProvider('$http'),
-		new AngularJSProvider('$localStorage'),
-		new AngularJSProvider('msx.platform.servicePanelControls'),
-		new AngularJSProvider('msx.platform.helpService')
-	],	
 	template
 })
 
 export class @@base_component_name@@ServiceDetails implements OnInit {
 	subscriptionManager: any;
 	@Input() service: any;
+    @Output() onControlsChange:EventEmitter<any> = new EventEmitter<any>();
+    @Output() onCloseRequest:EventEmitter<any> = new EventEmitter<any>();
+
+    private spControls: any = [];
+
 	deleting: boolean = false;
 	text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non metus rutrum, iaculis justo et, tristique arcu." +
 			"Quisque dictum, nibh non euismod ultricies, odio tortor pulvinar tellus, quis porttitor felis elit eu massa. Orci varius natoque " +
@@ -31,44 +28,43 @@ export class @@base_component_name@@ServiceDetails implements OnInit {
 			"mattis tincidunt.";
 
 	constructor(
-		@Inject('$state') private $state: any,
-		@Inject('$http') private httpClient: any,
-		@Inject('$localStorage') private $localStorage: any,
-		@Inject('msx.platform.servicePanelControls') private servicePanelControls: any,
-		@Inject('msx.platform.helpService') private helpService: any
-	) { 
-		this.subscriptionManager = new @@base_component_name@@SubscripionManager(this.httpClient, this.$localStorage.API_GATEWAY_HOSTNAME);
+		@Inject('cpx.core.http') private readonly httpClient: any,
+        @Inject('cpx.core.info') private readonly cpxSystemInfo: any,
+        @Inject("cox.core.service.help") private readonly helpService,
+        private readonly injector: Injector
+	) {
+		this.subscriptionManager = new @@base_component_name@@SubscripionManager(this.httpClient, this.cpxSystemInfo.getAPIGateway(), injector);
 	}
-	
+
 	ngOnInit() {
 		const helpService = this.helpService;
-		
+
 		// This registers buttons to appear when in details view.  Note that all labels
 		// should be I18n keys and defined within your I18n file.  This is just an example
 		// of how to define and display them.
-		
-		this.servicePanelControls.registerServicePanelControls("@@servicepack_name@@", [{
+
+		this.spControls = [{
 			label: "@@servicepack_name@@.service.tile.help.button.label",
 			buttonClass: "vms_fi_alert6005-16 button--secondary",
-			action: function(){
+			action: () => {
 				helpService.launchHelp("msx/platform/tenant/workspace/@@servicepack_name@@/help");
-			}		
+			}
 		},{
 			label: "Button 1",
 			buttonClass: "vms_fi_action2007-16 button--secondary",
-			action: function(){
+			action: () => {
 				console.log("Executed action 1");
 			}
 		},{
 			label: "Button 2",
 			buttonClass: "vms_fi_action2010-16 button--primary",
-			action: function(){
+			action: () => {
 				console.log("Executed action 2");
 			}
 		},{
 			label: "Button 3",
 			buttonClass: "vms_fi_action2013-16 button--danger",
-			action: function(){
+			action: () => {
 				console.log("Executed action 3");
 			}
 		}, {
@@ -90,7 +86,7 @@ export class @@base_component_name@@ServiceDetails implements OnInit {
 			},{
 				label: "@@servicepack_name@@.service.tile.help.button.label",
 				value: {
-					launchHelp: function(){
+					launchHelp: () => {
 						helpService.launchHelp("msx/platform/tenant/workspace/@@servicepack_name@@/help");
 					}
 				}
@@ -112,13 +108,16 @@ export class @@base_component_name@@ServiceDetails implements OnInit {
 			action: function(onState){
 				console.log("Executed switch.  State:", onState);
 			}
-		}]);		
+		}];
+        setTimeout(() => {
+            this.onControlsChange.emit(this.spControls)
+        }, 10);
 	}
 
 	onClick(): void {
 		this.deleting = true;
 		this.subscriptionManager.unsubscribe(this.service).finally(() => {
-			this.$state.reload();
+			window.location.reload();
 		});
 	}
 }

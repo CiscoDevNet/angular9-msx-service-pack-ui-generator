@@ -4,18 +4,6 @@
 #
 #!/bin/bash
 
-#Warn user that builds replace old build files
-if [ -d "./build" ] ; then
-while true; do
-    read -p "WARNING Running Build replaces the current Build Folder do you wish to continue?" yn
-    case $yn in
-        [Yy]* )  break;;
-        [Nn]* ) exit;;
-        * ) echo "Please answer yes or no.";;
-    esac
-done
-fi
-
 set -e
 
 NODE_OPTIONS=--max_old_space_size=8192
@@ -47,13 +35,13 @@ cd build
 
 ZIP=`which zip`
 
-if [ -f "$ZIP" ] ; then 
+if [ -f "$ZIP" ] ; then
 	$ZIP -yr tcui_package.zip *
 fi
 
 TAR=`which tar`
 
-if [ -f "$TAR" ] ; then 
+if [ -f "$TAR" ] ; then
 	# TODO double check that this still works on MAC after removel of "./"
 	# --exclude=./tcui_package.zip does not work on UNIX
 	# had to change it to --exclude=tcui_package.zip

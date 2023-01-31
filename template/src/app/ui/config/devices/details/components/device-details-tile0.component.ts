@@ -2,7 +2,6 @@
 //
 // This is an example device details tile implementation
 import { Component, Input, OnInit, Inject } from '@angular/core';
-import { AngularJSProvider } from '@cisco-msx/common';
 
 const template = "<div class='' *ngIf='!deviceSerialAvailable'>" +
 	"<span class='{{statusDot}}'></span>" +
@@ -13,28 +12,25 @@ const template = "<div class='' *ngIf='!deviceSerialAvailable'>" +
 
 @Component({
 	selector: '@@servicepack_name@@-device-details-tile0',
-	providers: [
-		new AngularJSProvider('skCommonStatusService')
-	],
 	template
 })
 
 export class @@base_component_name@@DeviceDetailsTile0 implements OnInit{
-	// This is a reference to the device  
-	@Input() device: any; 
+	// This is a reference to the device
+	@Input() device: any;
 
 	deviceSerialAvailable: boolean = false;
 	statusDot: string = "";
 	statusName: string = "";
-	
+
 	constructor(
-		@Inject('skCommonStatusService') private statusService: any,
+		@Inject('cpx.core.service.status') private statusService: any,
 	) { }
-	
+
 	onclick() {
 		console.log("Add Serial Number Clicked");
 	}
-	
+
 	ngOnInit() {
 		this.deviceSerialAvailable = this.device.serialKey && this.device.serialKey.length ? true : false;
 		this.statusDot = this.statusService.getBubble(this.device.status.value);

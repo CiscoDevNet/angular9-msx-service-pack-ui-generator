@@ -68,5 +68,28 @@ if [ "${OUTPUT_DIR}x" = "x" ] ; then
 	OUTPUT_DIR="$HOME/templated-service-$PROJECT_UUID"
 fi
 
+CUR_DIR=`pwd`
+cd ~/
+_HOME=`pwd`
+OUTPUT_DIR=`echo $OUTPUT_DIR | sed -e "s|\~\/|$_HOME\/|"`
+# Handle ./ as well.
+OUTPUT_DIR=`echo $OUTPUT_DIR | sed -e "s|^"\.\/"|$CUR_DIR\/|"`
+
+cd "$CUR_DIR"
+
+if [ -d "$OUTPUT_DIR" ] ; then
+echo ""
+while true; do
+    echo "*** WARNING Running Build replaces the current project folder do you wish to continue?"
+    read -p "    Please answer (y) for yes and (n) for no: " yn
+    case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+echo ""
+fi
+
 npm run create-project -- "-project-name=$PROJECT_NAME" "-project-description=$PROJECT_DESCRIPTION" "-project-uuid=$PROJECT_UUID" "-image-file=$IMAGE" "-output-dir=$OUTPUT_DIR"
 cd $CUR_DIR

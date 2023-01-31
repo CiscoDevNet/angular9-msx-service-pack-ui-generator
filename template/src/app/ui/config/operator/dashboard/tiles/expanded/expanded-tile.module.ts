@@ -1,9 +1,9 @@
 import { NgModule, Provider, DoBootstrap} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MsxCommonModule, AngularJSProvider} from '@cisco-msx/common';
+import { CpxCommonModule } from '@cisco-msx/common';
 import { MsxFormsModule } from '@cisco-msx/forms';
-import { DevicesModule } from '@cisco-msx/devices';
-import { SitesModule } from '@cisco-msx/sites';
+//import { DevicesModule } from '@cisco-msx/devices';
+//import { SitesModule } from '@cisco-msx/sites';
 import { @@base_component_name@@ExpandedTileComponent } from './expanded-tile.component';
 
 const DIRECTIVES: Provider[] = [
@@ -12,13 +12,10 @@ const DIRECTIVES: Provider[] = [
 @NgModule({
 	imports: [
 		CommonModule,
-		MsxCommonModule,
+		CpxCommonModule,
 		MsxFormsModule,
-		SitesModule,
-		DevicesModule
-	],
-	providers: [
-		new AngularJSProvider('msx.translateService'),
+		//SitesModule,
+		//DevicesModule
 	],
 	declarations: [DIRECTIVES],
 	exports: [DIRECTIVES],

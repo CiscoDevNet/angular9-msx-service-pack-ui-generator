@@ -1,9 +1,7 @@
-import type { Ng2StateDeclaration } from '@uirouter/angular';
 
-export const routes: Ng2StateDeclaration[] = [
+export const  routes: any [] = [
   {
-    name: 'app.@@servicepack_name@@.**',
-    url: '/@@servicepack_name@@',
+    path: '@@servicepack_name@@',
     loadChildren: () =>
       import('./routed-page').then(mod => mod.RoutedPageModule),
   },

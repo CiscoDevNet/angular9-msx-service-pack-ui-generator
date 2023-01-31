@@ -1,6 +1,6 @@
 import { NgModule, Provider, DoBootstrap} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MsxCommonModule, AngularJSProvider} from '@cisco-msx/common';
+import { CpxCommonModule} from '@cisco-msx/common';
 import { MsxFormsModule } from '@cisco-msx/forms';
 import { DevicesModule } from '@cisco-msx/devices';
 import { SitesModule } from '@cisco-msx/sites';
@@ -16,16 +16,10 @@ const DIRECTIVES: Provider[] = [
 @NgModule({
 	imports: [
 		CommonModule,
-		MsxCommonModule,
+		CpxCommonModule,
 		MsxFormsModule,
-		SitesModule,
-		DevicesModule
-	],
-	providers: [
-		new AngularJSProvider('msx.translateService'),
-		new AngularJSProvider('$state'),
-		new AngularJSProvider('$http'),
-		new AngularJSProvider('$localStorage')	
+		//SitesModule,
+		//DevicesModule
 	],
 	declarations: [DIRECTIVES],
 	exports: [DIRECTIVES],

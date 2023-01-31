@@ -1,6 +1,6 @@
 import { NgModule, Provider, DoBootstrap} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MsxCommonModule, AngularJSProvider} from '@cisco-msx/common';
+import { CpxCommonModule } from '@cisco-msx/common';
 import { MsxFormsModule} from '@cisco-msx/forms';
 
 import { @@base_component_name@@PreSubscriptionForm } from './pre/pre-subscription-form.component';
@@ -11,7 +11,7 @@ const DIRECTIVES: Provider[] = [
 @NgModule({
 	imports: [
 		CommonModule,
-		MsxCommonModule,
+		CpxCommonModule,
 		MsxFormsModule
 	],
 	providers: [

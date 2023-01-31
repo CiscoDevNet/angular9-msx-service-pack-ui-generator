@@ -4,6 +4,8 @@
 // into the tenant workspace.  It is a one-point place to to all the registration of your
 // injectable components, control functions, and the like.
 
+import { Injector } from "@angular/core";
+
 import { @@base_component_name@@SubscriptionFormsModule } from "./config/subscription/subscription.module";
 import { @@base_component_name@@PreSubscriptionForm } from "./config/subscription/pre/pre-subscription-form.component";
 import { @@base_component_name@@SubscripionManager } from "./manager/subscription-manager";
@@ -27,21 +29,28 @@ import { @@base_component_name@@OperatorExpandedTileModule } from "./config/oper
 import { @@base_component_name@@OperatorExpandedTileComponent } from "./config/operator/dashboard/tiles/expanded/expanded-tile.component";
 
 export class @@base_component_name@@TCUIHooks {
-	httpService: any;
-	msxApiRouterBaseURL: string;
-	subscriptionManager: any;
+    httpService: any;
+    cpxSystemInfo: any;
+    msxApiRouterBaseURL: string;
+    subscriptionManager: any;
+    baseRoute = "";
+    injector: Injector = null;
 
-	constructor(httpService: any, msxApiRouterBaseURL: string) {
-		this.httpService = httpService;
-		this.msxApiRouterBaseURL = msxApiRouterBaseURL;
-		this.subscriptionManager = new @@base_component_name@@SubscripionManager(this.httpService, this.msxApiRouterBaseURL);
-	}
+    constructor(injector: Injector, baseRoute: string) {
+        this.injector = injector;
+        this.baseRoute = baseRoute;
+        this.httpService = injector.get("cpx.core.http");
+        this.cpxSystemInfo = injector.get("cpx.core.info");
+        this.msxApiRouterBaseURL = this.cpxSystemInfo.getAPIGateway();
+        this.subscriptionManager = new  @@base_component_name@@SubscripionManager(this.httpService, this.msxApiRouterBaseURL, injector);
+
+        if (baseRoute) {
+            this.baseRoute = baseRoute;
+        }
+    }
+
 
 	getSubscriptionConfig() {
-		const getContext = function(context){
-			return context;
-		};
-		const self = getContext(this);
 		return {
 			// The component that is displayed before you are allowed to subscribe to the service.  It's
 			// intended as a point to inject a small form, like a terms/conditions to agree to, or specific
@@ -57,8 +66,8 @@ export class @@base_component_name@@TCUIHooks {
 			// when it is done.  A reject is treated as a failure.  This is provided as a sample implementation, your
 			// service may require more.
 			// ** Required.
-			subscriptionFunction: function(tenant:any, serviceType:string, offer:any, additionalData: any){
-				return self.subscriptionManager.subscribe(offer, tenant, additionalData);
+			subscriptionFunction: (tenant:any, serviceType:string, offer:any, additionalData: any) => {
+				return this.subscriptionManager.subscribe(offer, tenant, additionalData);
 			}
 		};
 	}
@@ -97,10 +106,10 @@ export class @@base_component_name@@TCUIHooks {
 		const ServiceMenuCtor = @@base_component_name@@ServiceNavigation;
 		const snInst = new ServiceMenuCtor();
 		return {
-			getServiceMenu: function(){
+			getServiceMenu: () => {
 				return snInst.getServiceMenu();
 			},
-			getNavigationAdditions: function() {
+			getNavigationAdditions: () =>  {
 				return snInst.getNavigationAdditions();
 			}
 		}
@@ -156,7 +165,7 @@ export class @@base_component_name@@TCUIHooks {
 					//
 					// ** Optional
 					//
-					getDeviceActionsConfig: function(){
+					getDeviceActionsConfig: () => {
 						const DeviceActionsPropCtor = @@base_component_name@@DeviceActions;
 						const dpInst = new DeviceActionsPropCtor();
 						return dpInst.getDeviceActionsConfig();
@@ -169,7 +178,7 @@ export class @@base_component_name@@TCUIHooks {
 					//
 					// ** Optional
 					//
-					getDevicePropertiesConfig: function(){
+					getDevicePropertiesConfig: () => {
 						const DevicePropCtor = @@base_component_name@@DeviceProperties;
 						const dpInst = new DevicePropCtor();
 						return dpInst.getDevicePropertiesConfig();
@@ -182,7 +191,7 @@ export class @@base_component_name@@TCUIHooks {
 					//
 					// ** Optional
 					//
-					getDevicePanels: function(){
+					getDevicePanels: () => {
 						const DeviceDetailsCtor = @@base_component_name@@DeviceDetails;
 						const dpInst = new DeviceDetailsCtor();
 						if (dpInst.getDevicePanels){
@@ -195,7 +204,7 @@ export class @@base_component_name@@TCUIHooks {
 					//
 					// ** Optional
 					//
-					getDeviceActions: function(){
+					getDeviceActions: () => {
 						const DeviceDetailsCtor = @@base_component_name@@DeviceDetails;
 						const dpInst = new DeviceDetailsCtor();
 						if (dpInst.getDeviceActions){
@@ -209,7 +218,7 @@ export class @@base_component_name@@TCUIHooks {
 					//
 					// ** Optional
 					//
-					getAddDeviceWizardSteps: function(){
+					getAddDeviceWizardSteps: () => {
 						const DeviceDetailsCtor = @@base_component_name@@DeviceDetails;
 						const dpInst = new DeviceDetailsCtor();
 						if (dpInst.getAddDeviceWizardSteps){
@@ -226,7 +235,7 @@ export class @@base_component_name@@TCUIHooks {
 					//
 					// ** Optional
 					//
-					getSiteDetailsPanel: function(){
+					getSiteDetailsPanel: () => {
 						const SiteDetailsCtor = @@base_component_name@@SiteDetails;
 						const dpInst = new SiteDetailsCtor();
 						if (dpInst.getSiteDetailsPanel){
@@ -235,7 +244,7 @@ export class @@base_component_name@@TCUIHooks {
 							return null;
 						}
 					},
-					getSiteActions: function(){
+					getSiteActions: () => {
 						const SiteDetailsCtor = @@base_component_name@@SiteDetails;
 						const dpInst = new SiteDetailsCtor();
 						if (dpInst.getSiteActions){

@@ -16,7 +16,7 @@ PROJECT_DESCRIPTION=""
 PROJECT_UUID=""
 OUTPUT_DIR=""
 IMAGE=""
-for PARAM in "$@" 
+for PARAM in "$@"
 do
 	if [ "${PROJECT_NAME}x" = "x" ] ; then
 		PROJECT_NAME=`echo $PARAM | grep '\-project-name=' | sed -e 's|\-project-name=||g'`
@@ -35,15 +35,15 @@ do
 	fi
 done
 
-if [ "${PROJECT_UUID}x" = "x" ] ; then 
+if [ "${PROJECT_UUID}x" = "x" ] ; then
 	PROJECT_UUID=`uuidgen | tr '[:upper:]' '[:lower:]'`
 fi
 
-if [ "${PROJECT_DESCRIPTION}x" = "x" ] ; then 
+if [ "${PROJECT_DESCRIPTION}x" = "x" ] ; then
 	PROJECT_DESCRIPTION="Templated Service Pack"
 fi
 
-if [ "${OUTPUT_DIR}x" = "x" ] ; then 
+if [ "${OUTPUT_DIR}x" = "x" ] ; then
 	OUTPUT_DIR="$HOME/templated-service-$PROJECT_UUID"
 fi
 
@@ -59,7 +59,7 @@ OUTPUT_DIR=`echo $OUTPUT_DIR | sed -e "s|^"\.\/"|$CUR_DIR\/|"`
 cd $CUR_DIR
 
 
-if [ ! -d $OUTPUT_DIR ] ; then 
+if [ ! -d $OUTPUT_DIR ] ; then
 	mkdir -p "$OUTPUT_DIR"
 fi
 
@@ -67,12 +67,12 @@ cd "$OUTPUT_DIR"
 OUTPUT_DIR=`pwd`
 cd "$CUR_DIR"
 
-if [ "${IMAGE}x" = "x" ] ; then 
+if [ "${IMAGE}x" = "x" ] ; then
 	IMAGE="$SCRIPT_LOC/../sample-image/sample.svg"
 else
 	IMAGE=`echo $IMAGE | sed -e "s|\~\/|$_HOME\/|"`
 	# Handle ./ as well.
-	IMAGE=`echo $IMAGE | sed -e "s|^"\.\/"|$CUR_DIR\/|"`	
+	IMAGE=`echo $IMAGE | sed -e "s|^"\.\/"|$CUR_DIR\/|"`
 fi
 
 if [ -d "$OUTPUT_DIR" ] ; then
@@ -92,7 +92,7 @@ PATH="$CUR_DIR/node_modules/.bin:$PATH"
 export PATH
 if [ -f "$CUR_DIR/package.json" ] ; then
 	npm install
-    
+
 fi
 webpack --display-error-details
 

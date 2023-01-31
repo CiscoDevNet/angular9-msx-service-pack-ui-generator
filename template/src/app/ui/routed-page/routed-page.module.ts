@@ -1,24 +1,17 @@
-import { NgModule } from '@angular/core';
-import { MsxCommonModule } from "@cisco-msx/common";
+import { NgModule,  } from '@angular/core';
+import { CpxCommonModule } from "@cisco-msx/common";
 import { RoutedPageComponent } from './routed-page.component';
-import { UIRouterModule } from '@uirouter/angular';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
-    MsxCommonModule,
-    UIRouterModule.forChild({
-      states: [
+    CpxCommonModule,
+    RouterModule.forChild([
         {
-          name: 'app.@@servicepack_name@@',
-          url: '/@@servicepack_name@@',
-          views: {
-            'module@app': {
-              component: RoutedPageComponent
-            }
-          },
+          path: '@@servicepack_name@@',
+          component:RoutedPageComponent
         }
-      ]
-    })
+    ])
   ],
   declarations: [
     RoutedPageComponent,
