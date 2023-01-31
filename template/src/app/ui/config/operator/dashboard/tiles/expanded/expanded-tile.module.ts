@@ -13,7 +13,7 @@ const DIRECTIVES: Provider[] = [
 	imports: [
 		CommonModule,
 		CpxCommonModule,
-		MsxFormsModule,
+		MsxFormsModule//,
 		//SitesModule,
 		//DevicesModule
 	],

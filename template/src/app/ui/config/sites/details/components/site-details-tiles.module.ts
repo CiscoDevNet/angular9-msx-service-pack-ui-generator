@@ -6,10 +6,10 @@
 
 import { NgModule, Provider, DoBootstrap} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MsxCommonModule} from '@cisco-msx/common';
+import { CpxCommonModule} from '@cisco-msx/common';
 import { MsxFormsModule } from '@cisco-msx/forms';
-import { DevicesModule } from '@cisco-msx/devices';
-import { SitesModule } from '@cisco-msx/sites';
+//import { DevicesModule } from '@cisco-msx/devices';
+//import { SitesModule } from '@cisco-msx/sites';
 import { @@base_component_name@@ServiceSiteDetailsComponent } from "./service-site-details.component";
 
 const DIRECTIVES: Provider[] = [
@@ -18,10 +18,10 @@ const DIRECTIVES: Provider[] = [
 @NgModule({
 	imports: [
 		CommonModule,
-		MsxCommonModule,
-		MsxFormsModule,
-		SitesModule,
-		DevicesModule
+		CpxCommonModule,
+		MsxFormsModule//,
+		//SitesModule,
+		//DevicesModule
 	],
 	providers: [],
 	declarations: [DIRECTIVES],
