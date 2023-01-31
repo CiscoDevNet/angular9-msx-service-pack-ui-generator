@@ -4,6 +4,18 @@
 #
 #!/bin/bash
 
+#Warn user that builds replace old build files
+if [ -d "./build" ] ; then
+while true; do
+    read -p "WARNING Running Build replaces the current Build Folder do you wish to continue?" yn
+    case $yn in
+        [Yy]* )  break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+fi
+
 set -e
 
 NODE_OPTIONS=--max_old_space_size=8192
