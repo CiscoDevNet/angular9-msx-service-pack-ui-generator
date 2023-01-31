@@ -3,7 +3,7 @@
 # All rights reserved
 #
 #!/bin/bash
-
+webpack
 set -e
 
 NODE_OPTIONS=--max_old_space_size=8192
@@ -87,11 +87,14 @@ export PROJECT_UUID
 export OUTPUT_DIR
 export IMAGE
 
+
 PATH="$CUR_DIR/node_modules/.bin:$PATH"
 export PATH
 if [ -f "$CUR_DIR/package.json" ] ; then
 	npm install
+    
 fi
 webpack --display-error-details
+
 
 echo "Created base project at: [$OUTPUT_DIR]"
