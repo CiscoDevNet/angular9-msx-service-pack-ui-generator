@@ -1,0 +1,6 @@
+{
+	"serviceId": "@@service_uuid@@",
+	"offerId": "@@offer_uuid@@",
+	"id": "@@terms_uuid@@",
+	"htmlContent": "@@servicepack_name@@.service.offer0.terms"
+}
