@@ -45,6 +45,276 @@ const getBaseComponentName = function(str){
 const aliases = {};
 aliases[normalizeString(PROJECT_NAME)] = buildUtils.resolvePath("src");
 
+// const config = {
+//     output: {
+//         path: OUTPUT_DIR,
+//         filename: "_temp.js",
+//         publicPath: "/"
+//     },
+
+//     entry: buildUtils.resolvePath("src", "index.js"),
+
+// 	resolve: {
+// 		extensions: [".ts", ".js"],
+// 		alias: aliases
+// 	},
+
+// 	plugins: [
+// 		// Copy all .md files from template to output performing replacements.
+// 		buildUtils.generateCopyPlugin({
+// 			// To is relative to output dir
+// 			to: normalizeString(PROJECT_NAME),
+// 			context: "template/",
+// 			from: "**/*.md"
+// 		},[
+// 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
+// 			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
+// 			{search: "@@servicepack_description@@", replace: PROJECT_DESCRIPTION, flags: "g"},
+// 			{search: "@@servicepack_uuid@@", replace: PROJECT_UUID, flags: "g"},
+// 			{search: "@@service_uuid@@", replace: SERVICE_UUID, flags: "g"},
+// 			{search: "@@offer_uuid@@", replace: OFFER_UUID, flags: "g"},
+// 			{search: "@@terms_uuid@@", replace: TERMS_UUID, flags: "g"},
+// 			{search: "@@priceplan_uuid@@", replace: PRICEPLAN_UUID, flags: "g"},
+// 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
+// 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
+// 		]),
+// 		// Copy all .yml files from template to output performing replacements.
+// 		buildUtils.generateCopyPlugin({
+// 			// To is relative to output dir
+// 			to: normalizeString(PROJECT_NAME),
+// 			context: "template/",
+// 			from: "**/*.yml"
+// 		},[
+// 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
+// 			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
+// 			{search: "@@servicepack_description@@", replace: PROJECT_DESCRIPTION, flags: "g"},
+// 			{search: "@@servicepack_uuid@@", replace: PROJECT_UUID, flags: "g"},
+// 			{search: "@@service_uuid@@", replace: SERVICE_UUID, flags: "g"},
+// 			{search: "@@offer_uuid@@", replace: OFFER_UUID, flags: "g"},
+// 			{search: "@@terms_uuid@@", replace: TERMS_UUID, flags: "g"},
+// 			{search: "@@priceplan_uuid@@", replace: PRICEPLAN_UUID, flags: "g"},
+// 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
+// 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
+// 		]),
+// 		// Copy all .html files from template to output performing replacements.
+// 		buildUtils.generateCopyPlugin({
+// 			// To is relative to output dir
+// 			to: normalizeString(PROJECT_NAME),
+// 			context: "template/",
+// 			from: "**/*.html"
+// 		},[
+// 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
+// 			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
+// 			{search: "@@servicepack_description@@", replace: PROJECT_DESCRIPTION, flags: "g"},
+// 			{search: "@@servicepack_uuid@@", replace: PROJECT_UUID, flags: "g"},
+// 			{search: "@@service_uuid@@", replace: SERVICE_UUID, flags: "g"},
+// 			{search: "@@offer_uuid@@", replace: OFFER_UUID, flags: "g"},
+// 			{search: "@@terms_uuid@@", replace: TERMS_UUID, flags: "g"},
+// 			{search: "@@priceplan_uuid@@", replace: PRICEPLAN_UUID, flags: "g"},
+// 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
+// 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
+// 		]),
+// 		// Copy all .js files from template to output performing replacements.
+// 		buildUtils.generateCopyPlugin({
+// 			// To is relative to output dir
+// 			to: normalizeString(PROJECT_NAME),
+// 			context: "template/",
+// 			from: "**/*.js"
+// 		},[
+// 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
+// 			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
+// 			{search: "@@servicepack_description@@", replace: PROJECT_DESCRIPTION, flags: "g"},
+// 			{search: "@@servicepack_uuid@@", replace: PROJECT_UUID, flags: "g"},
+// 			{search: "@@service_uuid@@", replace: SERVICE_UUID, flags: "g"},
+// 			{search: "@@offer_uuid@@", replace: OFFER_UUID, flags: "g"},
+// 			{search: "@@terms_uuid@@", replace: TERMS_UUID, flags: "g"},
+// 			{search: "@@priceplan_uuid@@", replace: PRICEPLAN_UUID, flags: "g"},
+// 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
+// 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
+// 		]),
+// 		// Copy all .ts files from template to output performing replacements.
+// 		buildUtils.generateCopyPlugin({
+// 			// To is relative to output dir
+// 			to: normalizeString(PROJECT_NAME),
+// 			context: "template/",
+// 			from: "**/*.ts"
+// 		},[
+// 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
+// 			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
+// 			{search: "@@servicepack_description@@", replace: PROJECT_DESCRIPTION, flags: "g"},
+// 			{search: "@@servicepack_uuid@@", replace: PROJECT_UUID, flags: "g"},
+// 			{search: "@@service_uuid@@", replace: SERVICE_UUID, flags: "g"},
+// 			{search: "@@offer_uuid@@", replace: OFFER_UUID, flags: "g"},
+// 			{search: "@@terms_uuid@@", replace: TERMS_UUID, flags: "g"},
+// 			{search: "@@priceplan_uuid@@", replace: PRICEPLAN_UUID, flags: "g"},
+// 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
+// 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
+// 		]),
+// 		// Copy all .scss files from template to output performing replacements.
+// 		buildUtils.generateCopyPlugin({
+// 			// To is relative to output dir
+// 			to: normalizeString(PROJECT_NAME),
+// 			context: "template/",
+// 			from: "**/*.scss"
+// 		},[
+// 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
+// 			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
+// 			{search: "@@servicepack_description@@", replace: PROJECT_DESCRIPTION, flags: "g"},
+// 			{search: "@@servicepack_uuid@@", replace: PROJECT_UUID, flags: "g"},
+// 			{search: "@@service_uuid@@", replace: SERVICE_UUID, flags: "g"},
+// 			{search: "@@offer_uuid@@", replace: OFFER_UUID, flags: "g"},
+// 			{search: "@@terms_uuid@@", replace: TERMS_UUID, flags: "g"},
+// 			{search: "@@priceplan_uuid@@", replace: PRICEPLAN_UUID, flags: "g"},
+// 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
+// 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
+// 		]),
+// 		// Copy .json files from template folder root to output performing replacements.
+// 		buildUtils.generateCopyPlugin({
+// 			// To is relative to output dir
+// 			to: normalizeString(PROJECT_NAME),
+// 			context: "template/",
+// 			from: "*.json"
+// 		},[
+// 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
+// 			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
+// 			{search: "@@servicepack_description@@", replace: PROJECT_DESCRIPTION, flags: "g"},
+// 			{search: "@@servicepack_uuid@@", replace: PROJECT_UUID, flags: "g"},
+// 			{search: "@@service_uuid@@", replace: SERVICE_UUID, flags: "g"},
+// 			{search: "@@offer_uuid@@", replace: OFFER_UUID, flags: "g"},
+// 			{search: "@@terms_uuid@@", replace: TERMS_UUID, flags: "g"},
+// 			{search: "@@priceplan_uuid@@", replace: PRICEPLAN_UUID, flags: "g"},
+// 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
+// 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
+// 		]),
+// 		// Copy .json files from template/src/ui/i18n folder root to output performing replacements.
+// 		buildUtils.generateCopyPlugin({
+// 			// To is relative to output dir
+// 			to: normalizeString(PROJECT_NAME),
+// 			context: "template/",
+// 			from: "src/app/ui/i18n/*.json"
+// 		},[
+// 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
+// 			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
+// 			{search: "@@servicepack_description@@", replace: PROJECT_DESCRIPTION, flags: "g"},
+// 			{search: "@@servicepack_uuid@@", replace: PROJECT_UUID, flags: "g"},
+// 			{search: "@@service_uuid@@", replace: SERVICE_UUID, flags: "g"},
+// 			{search: "@@offer_uuid@@", replace: OFFER_UUID, flags: "g"},
+// 			{search: "@@terms_uuid@@", replace: TERMS_UUID, flags: "g"},
+// 			{search: "@@priceplan_uuid@@", replace: PRICEPLAN_UUID, flags: "g"},
+// 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
+// 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
+// 		]),
+// 		// Copy .json files from template/src/ui/help folder root to output performing replacements.
+// 		buildUtils.generateCopyPlugin({
+// 			// To is relative to output dir
+// 			to: normalizeString(PROJECT_NAME),
+// 			context: "template/",
+// 			from: "src/app/ui/help/*.json"
+// 		},[
+// 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
+// 			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
+// 			{search: "@@servicepack_description@@", replace: PROJECT_DESCRIPTION, flags: "g"},
+// 			{search: "@@servicepack_uuid@@", replace: PROJECT_UUID, flags: "g"},
+// 			{search: "@@service_uuid@@", replace: SERVICE_UUID, flags: "g"},
+// 			{search: "@@offer_uuid@@", replace: OFFER_UUID, flags: "g"},
+// 			{search: "@@terms_uuid@@", replace: TERMS_UUID, flags: "g"},
+// 			{search: "@@priceplan_uuid@@", replace: PRICEPLAN_UUID, flags: "g"},
+// 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
+// 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
+// 		]),
+// 		// Copy over the deployer shell script to make easy deployment of metadata
+// 		buildUtils.generateCopyPlugin({
+// 			// To is relative to output dir
+// 			to: normalizeString(PROJECT_NAME),
+// 			context: "template/",
+// 			from: "bin/*.sh"
+// 		},[
+// 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
+// 			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
+// 			{search: "@@servicepack_description@@", replace: PROJECT_DESCRIPTION, flags: "g"},
+// 			{search: "@@servicepack_uuid@@", replace: PROJECT_UUID, flags: "g"},
+// 			{search: "@@service_uuid@@", replace: SERVICE_UUID, flags: "g"},
+// 			{search: "@@offer_uuid@@", replace: OFFER_UUID, flags: "g"},
+// 			{search: "@@terms_uuid@@", replace: TERMS_UUID, flags: "g"},
+// 			{search: "@@priceplan_uuid@@", replace: PRICEPLAN_UUID, flags: "g"},
+// 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
+// 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
+// 		]),
+// 		// Copy over the Dockerfile
+// 		buildUtils.generateCopyPlugin({
+// 			// To is relative to output dir
+// 			to: normalizeString(PROJECT_NAME),
+// 			context: "template/",
+// 			from: "**/Dockerfile"
+// 		},[
+// 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
+// 			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
+// 			{search: "@@servicepack_description@@", replace: PROJECT_DESCRIPTION, flags: "g"},
+// 			{search: "@@servicepack_uuid@@", replace: PROJECT_UUID, flags: "g"},
+// 			{search: "@@service_uuid@@", replace: SERVICE_UUID, flags: "g"},
+// 			{search: "@@offer_uuid@@", replace: OFFER_UUID, flags: "g"},
+// 			{search: "@@terms_uuid@@", replace: TERMS_UUID, flags: "g"},
+// 			{search: "@@priceplan_uuid@@", replace: PRICEPLAN_UUID, flags: "g"},
+// 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
+// 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
+// 		]),
+// 		// Copy all .conf files from template to output performing replacements.
+// 		buildUtils.generateCopyPlugin({
+// 			// To is relative to output dir
+// 			to: normalizeString(PROJECT_NAME),
+// 			context: "template/",
+// 			from: "**/*.conf"
+// 		},[
+// 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
+// 			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
+// 			{search: "@@servicepack_description@@", replace: PROJECT_DESCRIPTION, flags: "g"},
+// 			{search: "@@servicepack_uuid@@", replace: PROJECT_UUID, flags: "g"},
+// 			{search: "@@service_uuid@@", replace: SERVICE_UUID, flags: "g"},
+// 			{search: "@@offer_uuid@@", replace: OFFER_UUID, flags: "g"},
+// 			{search: "@@terms_uuid@@", replace: TERMS_UUID, flags: "g"},
+// 			{search: "@@priceplan_uuid@@", replace: PRICEPLAN_UUID, flags: "g"},
+// 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
+// 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
+// 		]),
+// 		// Change mode on all .sh files to executable
+// 		new ChmodWebpackPlugin([
+// 			{path: OUTPUT_DIR + "/" + normalizeString(PROJECT_NAME) + "/bin/*.sh", mode: 755},
+// 			{path: OUTPUT_DIR + "/" + normalizeString(PROJECT_NAME) + "/src/app/metadata/*.sh", mode: 755}
+// 		]),
+// 		new RemovePlugin({
+//             after: {
+//             	include: [
+//             		path.resolve(OUTPUT_DIR, "_temp.js")
+//             	],
+//             	trash: true,
+//             	allowRootAndOutside: true
+//             }
+//         }),
+// 		// Combine files in src/metadata to build one medata data file
+// 		// This is our own webpack plugin
+// 		// output file name "catalogMetadata.json" is in the plugin.
+//         new buildUtils.GenerateServiceDataPayloadPlugin({
+//         	outputDir: path.resolve(OUTPUT_DIR, normalizeString(PROJECT_NAME), "src", "app", "metadata"),
+//         	servicesDir: buildUtils.resolvePath("template", "src","app", "metadata", "services"),
+//         	offersDir: buildUtils.resolvePath("template", "src", "app", "metadata", "offers"),
+//         	priceplansDir: buildUtils.resolvePath("template", "src", "app", "metadata", "priceplans"),
+//         	termsDir: buildUtils.resolvePath("template", "src", "app", "metadata", "terms"),
+//         	replacements:[
+// 				{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
+// 				{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
+// 				{search: "@@servicepack_description@@", replace: PROJECT_DESCRIPTION, flags: "g"},
+// 				{search: "@@servicepack_uuid@@", replace: PROJECT_UUID, flags: "g"},
+// 				{search: "@@service_uuid@@", replace: SERVICE_UUID, flags: "g"},
+// 				{search: "@@offer_uuid@@", replace: OFFER_UUID, flags: "g"},
+// 				{search: "@@terms_uuid@@", replace: TERMS_UUID, flags: "g"},
+// 				{search: "@@priceplan_uuid@@", replace: PRICEPLAN_UUID, flags: "g"},
+// 				{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"}
+// 			]
+//         })
+// 	],
+// 	module: {}
+// };
+
 const config = {
     output: {
         path: OUTPUT_DIR,
@@ -96,24 +366,6 @@ const config = {
 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
 		]),
-		// Copy all .html files from template to output performing replacements.
-		buildUtils.generateCopyPlugin({
-			// To is relative to output dir
-			to: normalizeString(PROJECT_NAME),
-			context: "template/",
-			from: "**/*.html"
-		},[
-			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
-			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
-			{search: "@@servicepack_description@@", replace: PROJECT_DESCRIPTION, flags: "g"},
-			{search: "@@servicepack_uuid@@", replace: PROJECT_UUID, flags: "g"},
-			{search: "@@service_uuid@@", replace: SERVICE_UUID, flags: "g"},
-			{search: "@@offer_uuid@@", replace: OFFER_UUID, flags: "g"},
-			{search: "@@terms_uuid@@", replace: TERMS_UUID, flags: "g"},
-			{search: "@@priceplan_uuid@@", replace: PRICEPLAN_UUID, flags: "g"},
-			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
-			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
-		]),
 		// Copy all .js files from template to output performing replacements.
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
@@ -150,24 +402,6 @@ const config = {
 			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
 			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
 		]),
-		// Copy all .scss files from template to output performing replacements.
-		buildUtils.generateCopyPlugin({
-			// To is relative to output dir
-			to: normalizeString(PROJECT_NAME),
-			context: "template/",
-			from: "**/*.scss"
-		},[
-			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
-			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
-			{search: "@@servicepack_description@@", replace: PROJECT_DESCRIPTION, flags: "g"},
-			{search: "@@servicepack_uuid@@", replace: PROJECT_UUID, flags: "g"},
-			{search: "@@service_uuid@@", replace: SERVICE_UUID, flags: "g"},
-			{search: "@@offer_uuid@@", replace: OFFER_UUID, flags: "g"},
-			{search: "@@terms_uuid@@", replace: TERMS_UUID, flags: "g"},
-			{search: "@@priceplan_uuid@@", replace: PRICEPLAN_UUID, flags: "g"},
-			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
-			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
-		]),
 		// Copy .json files from template folder root to output performing replacements.
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
@@ -192,24 +426,6 @@ const config = {
 			to: normalizeString(PROJECT_NAME),
 			context: "template/",
 			from: "src/app/ui/i18n/*.json"
-		},[
-			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
-			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
-			{search: "@@servicepack_description@@", replace: PROJECT_DESCRIPTION, flags: "g"},
-			{search: "@@servicepack_uuid@@", replace: PROJECT_UUID, flags: "g"},
-			{search: "@@service_uuid@@", replace: SERVICE_UUID, flags: "g"},
-			{search: "@@offer_uuid@@", replace: OFFER_UUID, flags: "g"},
-			{search: "@@terms_uuid@@", replace: TERMS_UUID, flags: "g"},
-			{search: "@@priceplan_uuid@@", replace: PRICEPLAN_UUID, flags: "g"},
-			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
-			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
-		]),
-		// Copy .json files from template/src/ui/help folder root to output performing replacements.
-		buildUtils.generateCopyPlugin({
-			// To is relative to output dir
-			to: normalizeString(PROJECT_NAME),
-			context: "template/",
-			from: "src/app/ui/help/*.json"
 		},[
 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
 			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
@@ -294,11 +510,11 @@ const config = {
 		// This is our own webpack plugin
 		// output file name "catalogMetadata.json" is in the plugin.
         new buildUtils.GenerateServiceDataPayloadPlugin({
-        	outputDir: path.resolve(OUTPUT_DIR, normalizeString(PROJECT_NAME), "src", "app", "metadata"),
-        	servicesDir: buildUtils.resolvePath("template", "src","app", "metadata", "services"),
-        	offersDir: buildUtils.resolvePath("template", "src", "app", "metadata", "offers"),
-        	priceplansDir: buildUtils.resolvePath("template", "src", "app", "metadata", "priceplans"),
-        	termsDir: buildUtils.resolvePath("template", "src", "app", "metadata", "terms"),
+        	outputDir: path.resolve(OUTPUT_DIR, normalizeString(PROJECT_NAME), "src", "i18n", "metadata"),
+        	servicesDir: buildUtils.resolvePath("template", "src","i18n", "metadata", "services"),
+        	offersDir: buildUtils.resolvePath("template", "src", "i18n", "metadata", "offers"),
+        	priceplansDir: buildUtils.resolvePath("template", "src", "i18n", "metadata", "priceplans"),
+        	termsDir: buildUtils.resolvePath("template", "src", "i18n", "metadata", "terms"),
         	replacements:[
 				{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
 				{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
@@ -314,7 +530,6 @@ const config = {
 	],
 	module: {}
 };
-
 module.exports = function(env = {}) {
 	return merge(config, {
 		mode: "none"
