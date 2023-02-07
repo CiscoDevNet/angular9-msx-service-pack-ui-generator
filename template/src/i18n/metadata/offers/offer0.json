@@ -1,0 +1,15 @@
+{
+	"name": "@@servicepack_name@@_offer0",
+	"label": "@@servicepack_name@@.service.offer0.label",
+	"version": 1,
+	"displayOrder": 1,
+	"uuid": "@@offer_uuid@@",
+	"productId": "@@service_uuid@@",
+	"description": "@@servicepack_name@@.service.offer0.description.label",
+	"image": "@@inline-image@@",
+	"supportedProperties": [],
+	"supportedOptions": [{
+		"name": "@@servicepack_name@@_option1",
+		"value": "Yes"
+	}]
+}
