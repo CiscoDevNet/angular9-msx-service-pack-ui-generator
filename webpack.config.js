@@ -17,9 +17,7 @@ const PROJECT_DESCRIPTION = process.env.PROJECT_DESCRIPTION || "";
 const OUTPUT_DIR = process.env.OUTPUT_DIR || "";
 const IMAGE = process.env.IMAGE || "";
 const BUILD_DATE = new Date().toISOString();
-
-
-const APP = process.env.APP_FOLDER || "template";
+const APP_FOLDER = process.env.APP_FOLDER || "template";
 
 let IMAGE_URL="";
 if(IMAGE){
@@ -66,7 +64,7 @@ const config = {
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
-			context: "template/",
+			context: `${APP_FOLDER}/`,
 			from: "**/*.md"
 		},[
 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
@@ -84,7 +82,7 @@ const config = {
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
-			context: "template/",
+			context: `${APP_FOLDER}/`,
 			from: "**/*.yml"
 		},[
 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
@@ -102,7 +100,7 @@ const config = {
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
-			context: "template/",
+			context: `${APP_FOLDER}/`,
 			from: "**/*.html"
 		},[
 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
@@ -120,7 +118,7 @@ const config = {
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
-			context: "template/",
+			context: `${APP_FOLDER}/`,
 			from: "**/*.js"
 		},[
 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
@@ -138,7 +136,7 @@ const config = {
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
-			context: "template/",
+			context: `${APP_FOLDER}/`,
 			from: "**/*.ts"
 		},[
 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
@@ -156,7 +154,7 @@ const config = {
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
-			context: "template/",
+			context: `${APP_FOLDER}/`,
 			from: "**/*.scss"
 		},[
 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
@@ -174,7 +172,7 @@ const config = {
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
-			context: "template/",
+			context: `${APP_FOLDER}/`,
 			from: "*.json"
 		},[
 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
@@ -192,7 +190,7 @@ const config = {
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
-			context: "template/",
+			context: `${APP_FOLDER}/`,
 			from: "src/app/ui/i18n/*.json"
 		},[
 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
@@ -210,7 +208,7 @@ const config = {
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
-			context: "template/",
+			context: `${APP_FOLDER}/`,
 			from: "src/app/ui/help/*.json"
 		},[
 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
@@ -228,7 +226,7 @@ const config = {
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
-			context: "template/",
+			context: `${APP_FOLDER}/`,
 			from: "bin/*.sh"
 		},[
 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
@@ -246,7 +244,7 @@ const config = {
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
-			context: "template/",
+			context: `${APP_FOLDER}/`,
 			from: "**/Dockerfile"
 		},[
 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
@@ -264,7 +262,7 @@ const config = {
 		buildUtils.generateCopyPlugin({
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
-			context: "template/",
+			context: `${APP_FOLDER}/`,
 			from: "**/*.conf"
 		},[
 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
@@ -297,10 +295,10 @@ const config = {
 		// output file name "catalogMetadata.json" is in the plugin.
         new buildUtils.GenerateServiceDataPayloadPlugin({
         	outputDir: path.resolve(OUTPUT_DIR, normalizeString(PROJECT_NAME), "src", "app", "metadata"),
-        	servicesDir: buildUtils.resolvePath("template", "src","app", "metadata", "services"),
-        	offersDir: buildUtils.resolvePath("template", "src", "app", "metadata", "offers"),
-        	priceplansDir: buildUtils.resolvePath("template", "src", "app", "metadata", "priceplans"),
-        	termsDir: buildUtils.resolvePath("template", "src", "app", "metadata", "terms"),
+        	servicesDir: buildUtils.resolvePath(`${APP_FOLDER}`, "src","app", "metadata", "services"),
+        	offersDir: buildUtils.resolvePath(`${APP_FOLDER}`, "src", "app", "metadata", "offers"),
+        	priceplansDir: buildUtils.resolvePath(`${APP_FOLDER}`, "src", "app", "metadata", "priceplans"),
+        	termsDir: buildUtils.resolvePath(`${APP_FOLDER}`, "src", "app", "metadata", "terms"),
         	replacements:[
 				{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
 				{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
