@@ -191,7 +191,25 @@ const config = {
 			// To is relative to output dir
 			to: normalizeString(PROJECT_NAME),
 			context: "template/",
-			from: "src/i18n/ui/i18n/*.json"
+			from: "src/app/ui/i18n/*.json"
+		},[
+			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
+			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
+			{search: "@@servicepack_description@@", replace: PROJECT_DESCRIPTION, flags: "g"},
+			{search: "@@servicepack_uuid@@", replace: PROJECT_UUID, flags: "g"},
+			{search: "@@service_uuid@@", replace: SERVICE_UUID, flags: "g"},
+			{search: "@@offer_uuid@@", replace: OFFER_UUID, flags: "g"},
+			{search: "@@terms_uuid@@", replace: TERMS_UUID, flags: "g"},
+			{search: "@@priceplan_uuid@@", replace: PRICEPLAN_UUID, flags: "g"},
+			{search: "@@inline-image@@", replace: IMAGE_URL, flags: "g"},
+			{search: "@@servicepack_builddate@@", replace: BUILD_DATE, flags: "g"}
+		]),
+		// Copy .json files from template/src/ui/help folder root to output performing replacements.
+		buildUtils.generateCopyPlugin({
+			// To is relative to output dir
+			to: normalizeString(PROJECT_NAME),
+			context: "template/",
+			from: "src/app/ui/help/*.json"
 		},[
 			{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
 			{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
