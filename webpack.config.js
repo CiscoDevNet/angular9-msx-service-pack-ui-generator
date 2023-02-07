@@ -17,7 +17,7 @@ const PROJECT_DESCRIPTION = process.env.PROJECT_DESCRIPTION || "";
 const OUTPUT_DIR = process.env.OUTPUT_DIR || "";
 const IMAGE = process.env.IMAGE || "";
 const BUILD_DATE = new Date().toISOString();
-const APP_FOLDER = process.env.APP_FOLDER || "template";
+
 
 let IMAGE_URL="";
 if(IMAGE){
