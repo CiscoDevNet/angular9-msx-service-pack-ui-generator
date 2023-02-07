@@ -6,7 +6,8 @@
 	"license": "SEE LICENSE IN LICENSE.md",
 	"private": true,
 	"scripts": {
-		"create-project": "bin/create-project.sh"
+		"create-project": "APP_FOLDER=template bin/create-project.sh",
+		"create-project-i18n": "APP_FOLDER=template_i18n bin/create-project.sh"
 	},
 	"browser": true,
 	"dependencies": {},

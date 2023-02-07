@@ -294,11 +294,11 @@ const config = {
 		// This is our own webpack plugin
 		// output file name "catalogMetadata.json" is in the plugin.
         new buildUtils.GenerateServiceDataPayloadPlugin({
-        	outputDir: path.resolve(OUTPUT_DIR, normalizeString(PROJECT_NAME), "src", "app", "metadata"),
-        	servicesDir: buildUtils.resolvePath(`${APP_FOLDER}`, "src","app", "metadata", "services"),
-        	offersDir: buildUtils.resolvePath(`${APP_FOLDER}`, "src", "app", "metadata", "offers"),
-        	priceplansDir: buildUtils.resolvePath(`${APP_FOLDER}`, "src", "app", "metadata", "priceplans"),
-        	termsDir: buildUtils.resolvePath(`${APP_FOLDER}`, "src", "app", "metadata", "terms"),
+        	outputDir: path.resolve(OUTPUT_DIR, normalizeString(PROJECT_NAME), "src", "metadata"),
+        	servicesDir: buildUtils.resolvePath(`${APP_FOLDER}`, "src", "metadata", "services"),
+        	offersDir: buildUtils.resolvePath(`${APP_FOLDER}`, "src", "metadata", "offers"),
+        	priceplansDir: buildUtils.resolvePath(`${APP_FOLDER}`, "src", "metadata", "priceplans"),
+        	termsDir: buildUtils.resolvePath(`${APP_FOLDER}`, "src", "metadata", "terms"),
         	replacements:[
 				{search: "@@servicepack_name@@", replace: normalizeString(PROJECT_NAME), flags: "g"},
 				{search: "@@base_component_name@@", replace: getBaseComponentName(PROJECT_NAME), flags: "g"},
